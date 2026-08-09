@@ -1,0 +1,68 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl t": [
+        "workspace::SendKeystrokes",
+        "alt-ctrl-shift-f11 alt-ctrl-shift-f12 ctrl-alt-enter",
+      ],
+      "alt-ctrl-shift-f11": ["pane::SplitRight", { "mode": "EmptyPane" }],
+      "alt-ctrl-shift-f12": "workspace::ActivatePaneRight",
+      "ctrl-alt-enter": "workspace::NewCenterTerminal",
+    },
+  },
+  {
+    "context": "Workspace && vim_mode == normal && !menu && !AgentPanel && !Terminal",
+    "bindings": {
+      "f f": ["task::Spawn", { "task_name": "fff" }],
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "s a": ["workspace::SendKeystrokes", "y s"],
+      "s d": ["workspace::SendKeystrokes", "d s"],
+      "s r": ["workspace::SendKeystrokes", "c s"],
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "space p": "command_palette::Toggle",
+      "space g": "workspace::NewSearch",
+      "space w": "workspace::Save",
+      "space f": "file_finder::Toggle",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j j": "vim::NormalBefore",
+    },
+  },
+  {
+    "context": "Editor && vim_mode",
+    "bindings": {
+      "ctrl-w v": "pane::SplitRight",
+    },
+  },
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "ctrl-l": "agent::AddSelectionToThread",
+    },
+  },
+  {
+    "context": "Editor && mode == full",
+    "unbind": {
+      "ctrl->": "agent::AddSelectionToThread",
+    },
+  },
+]

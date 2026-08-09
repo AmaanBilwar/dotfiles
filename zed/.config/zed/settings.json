@@ -1,0 +1,355 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "bottom_dock_layout": "full",
+  "buffer_font_weight": 400.0,
+  "buffer_line_height": "standard",
+  "vim": {
+    "cursor_shape": {
+      "insert": "inherit",
+    },
+    "show_edit_predictions_in_normal_mode": false,
+    "use_regex_search": true,
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true,
+  },
+  "gutter": {
+    "min_line_number_digits": 4,
+  },
+  "cursor_blink": false,
+  "show_whitespaces": "selection",
+  "markdown_preview_font_size": 22.0,
+  "buffer_font_size": 22.0,
+  // "buffer_font_family": "FiraCode Nerd Font Mono",
+  // "buffer_font_family": "Ubuntu Mono",
+  // "buffer_font_family": "JetBrains Mono",
+  "buffer_font_family": "Iosevka Term",
+  "command_aliases": {
+    "aa": "agent::ToggleFocus",
+    "ee": "editor::ToggleFocus",
+    "rw": "workspace::Reload",
+    "cp": "workspace::CloseProject",
+    "gd": "git::Diff",
+    "gs": "git::Switch",
+    "gp": "git::Push",
+  },
+  "ui_font_size": 22.0,
+  // "ui_font_family": "Ubuntu",
+  "ui_font_family": "Iosevka Term",
+  "agent_buffer_font_size": 20.0,
+  "agent_ui_font_size": 24.0,
+  "context_servers": {
+    "new-scene": {
+      "env": {},
+      "args": ["/home/amaan/code/new-scene-ai/mcp/src/main.ts"],
+      "command": "/home/amaan/code/new-scene-ai/node_modules/.bin/tsx",
+      "remote": false,
+      "timeout": null,
+      "enabled": true,
+    },
+    "mcp-server-exa-search": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "exa_api_key": null,
+      },
+    },
+    "mcp-server-supabase": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "supabase_access_token": null,
+        "read_only": false,
+      },
+    },
+    "mcp-server-playwright": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "browser": "chromium",
+        "headless": true,
+      },
+    },
+    "slashy": {
+      "env": {},
+      "args": ["-y", "mcp-remote@0.1.16", "https://slashy.ctrlcenter.ai/mcp"],
+      "command": "npx",
+      "remote": false,
+      "timeout": null,
+      "enabled": false,
+    },
+    "fff": {
+      "env": {},
+      "args": [],
+      "command": "/home/amaan/.local/bin/fff-mcp-opencode",
+      "remote": false,
+      "timeout": null,
+      "enabled": true,
+    },
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Colored Zed Icons Theme Dark",
+    "dark": "Zed (Default)",
+  },
+  "ui_font_weight": 400.0,
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "show_edit_predictions": true,
+  "edit_predictions": {
+    "mode": "subtle",
+    "provider": "zed",
+  },
+  "diff_view_style": "split",
+  "cli_default_open_behavior": "existing_window",
+  "agent": {
+    "tool_permissions": {
+      "tools": {
+        "mcp:mcp-server-exa-search:web_fetch_exa": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-exa-search:web_search_exa": {
+          "default": "allow"
+        },
+        "search_web": {
+          "default": "allow"
+        },
+        "terminal": {
+          "default": "allow",
+          "always_allow": [
+            {
+              "pattern": "^jj\\b"
+            }
+          ]
+        },
+        "mcp:fff:multi_grep": {
+          "default": "allow"
+        },
+        "mcp:fff:grep": {
+          "default": "allow"
+        },
+        "mcp:fff:find_files": {
+          "default": "allow"
+        }
+      }
+    },
+    "inline_assistant_model": {
+      "provider": "zed.dev",
+      "model": "gpt-5.5",
+      "enable_thinking": false,
+    },
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "gpt-5.6-terra",
+      "enable_thinking": true,
+      "effort": "medium",
+    },
+    "dock": "right",
+    "sidebar_side": "left",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "search": {
+    "include_ignored": false,
+  },
+  "soft_wrap": "editor_width",
+  "relative_line_numbers": "wrapped",
+  "git_panel": {
+    "dock": "left",
+  },
+  "terminal": {
+    // "font_family": "JetBrainsMono Nerd Font",
+    "font_family": "Iosevka Term",
+    "dock": "bottom",
+    "font_weight": 300.0,
+    "font_size": 21.0,
+  },
+  "project_panel": {
+    "indent_size": 16.0,
+    "entry_spacing": "standard",
+    "hide_hidden": false,
+    "dock": "left",
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "session": {
+    "trust_all_worktrees": false,
+  },
+  "vim_mode": true,
+  "agent_servers": {
+    "pi-acp": {
+      "default_config_options": {
+        "model": "cursor/grok-4.5",
+      },
+      "type": "registry",
+    },
+    "codex-acp": {
+      "default_config_options": {
+        "model": "gpt-5.3-codex",
+      },
+      "type": "registry",
+    },
+    "opencode": {
+      "favorite_config_option_values": {
+        "effort": ["high"],
+      },
+      "default_config_options": {
+        "effort": "max",
+        "model": "openai/gpt-5.6-sol",
+        "mode": "build",
+      },
+      "type": "registry",
+    },
+    "claude-acp": {
+      "default_config_options": {
+        "mode": "bypassPermissions",
+      },
+      "type": "registry",
+    },
+    "cursor": {
+      "favorite_config_option_values": {
+        "model": ["grok-4.5", "composer-2.5"],
+      },
+      "default_config_options": {
+        "fast": "false",
+        "mode": "agent",
+        "model": "grok-4.5",
+      },
+      "type": "registry",
+    },
+  },
+  "format_on_save": "on",
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+      },
+      "enable_lsp_tasks": true,
+    },
+    "oxfmt": {
+      "binary": {
+        "path": "/home/amaan/.local/share/pnpm/bin/oxfmt",
+        "arguments": ["--lsp"],
+      },
+    },
+    "oxlint": {
+      "binary": {
+        "path": "/home/amaan/.local/share/pnpm/bin/oxlint",
+        "arguments": ["--lsp"],
+      },
+      "initialization_options": {
+        "settings": {
+          "run": "onType",
+          "fixKind": "safe_fix",
+        },
+      },
+    },
+  },
+  "languages": {
+    "Markdown": {
+      "format_on_save": "off",
+      "prettier": {
+        "allowed": false,
+      },
+    },
+    "TypeScript": {
+      "inlay_hints": {
+        "enabled": true,
+      },
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+        "!eslint",
+        "...",
+      ],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false,
+      },
+      "formatter": [
+        {
+          "external": {
+            "command": "/home/amaan/.local/share/pnpm/bin/oxfmt",
+            "arguments": ["--stdin-filepath", "{buffer_path}"],
+          },
+        },
+        {
+          "code_action": "source.fixAll.oxc",
+        },
+      ],
+    },
+    "TSX": {
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+        "!eslint",
+        "...",
+      ],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false,
+      },
+      "formatter": [
+        {
+          "external": {
+            "command": "/home/amaan/.local/share/pnpm/bin/oxfmt",
+            "arguments": ["--stdin-filepath", "{buffer_path}"],
+          },
+        },
+        {
+          "code_action": "source.fixAll.oxc",
+        },
+      ],
+    },
+    "JavaScript": {
+      "language_servers": ["!eslint", "..."],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false,
+      },
+      "formatter": [
+        {
+          "external": {
+            "command": "/home/amaan/.local/share/pnpm/bin/oxfmt",
+            "arguments": ["--stdin-filepath", "{buffer_path}"],
+          },
+        },
+        {
+          "code_action": "source.fixAll.oxc",
+        },
+      ],
+    },
+  },
+  "theme": {
+    "mode": "dark",
+    "light": "Ayu Light",
+    // "dark": "Gruvbox Dark Soft",
+    // "dark": "One Dark",
+    "dark": "One Dark",
+  },
+  "language_servers": ["ty", "!basedpyright", "!eslint", "oxlint", "..."],
+  "file_scan_exclusions": ["**/.DS_Store", "**/node_modules", "**/target"],
+}

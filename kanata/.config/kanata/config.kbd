@@ -1,0 +1,82 @@
+;; Two-layer keyboard layout.
+;; Hold Left Alt for the lower layer; release to return to main.
+;; Right Alt is Enter. Left Ctrl is Escape.
+;; Right Ctrl toggles mouse layer (press again to exit).
+;; Hold Tab for nav: i/j/k/l = up/left/down/right; o = `.
+;; Home-row Alt: hold s or l for Alt; remaining home-row keys stay plain.
+
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+  linux-dev-names-include (
+    "ITE Tech. Inc. ITE Device(8295) Keyboard"
+    "Ideapad extra buttons"
+    "ITE Tech. Inc. ITE Device(8910) Keyboard"
+    "AT Translated Set 2 keyboard"
+    "Glorious Model O Keyboard"
+    "Evision RGB Keyboard"
+  )
+)
+
+(defvar
+  tap-time 200
+  hold-time 200
+)
+
+(defsrc
+  1    2    3    4    5    6    7    8    9    0    -    =
+  tab  q    w    e    r    t    y    u    i    o    p    [    bspc
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  z    x    c    v    b    n    m    ,    .    /
+  lalt ralt lctl rctrl
+)
+
+(deflayer main
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  @tab-nav q    w    e    r    t    y    u    i    o    p    bspc bspc
+  lctl a      @s-alt d      f      g    h    j      k      @l-alt ;      '    ret
+  z    x    c    v    b    n    m    ,    .    /
+  @la-hold ret esc @mouse-on
+)
+
+(deflayer lower
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  @tab-nav 1    2    3    4    5    6    7    8    9    0    bspc bspc
+  lctl S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  \    ret
+  S-,  S-.  =    -    S--  S-=  S-[  S-]  [    ]
+  _ ret esc esc
+)
+
+(deflayer nav
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    up   `    _    _    _
+  _    _    _    _    _    _    _    left down rght del  _    _
+  _    _    _    _    _    _    _    _    _    _
+  _    _    _    _
+)
+
+(deflayer mouse
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   mltp mmtp mrtp @mswd @mswu @msl @msd @msu @msr XX   XX   XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   @mouse-off
+)
+
+(defalias
+  tab-nav  (tap-hold-press $tap-time $hold-time tab (layer-while-held nav))
+  la-hold  (tap-hold-press $tap-time $hold-time lalt (layer-while-held lower))
+  mouse-on (layer-switch mouse)
+  mouse-off (layer-switch main)
+
+  ;; Home-row Alt only: tap emits the letter; hold enables Alt.
+  s-alt    (tap-hold $tap-time $hold-time s lalt)
+  l-alt    (tap-hold $tap-time $hold-time l ralt)
+
+  msl      (movemouse-accel-left  8 700 1 15)
+  msd      (movemouse-accel-down  8 700 1 15)
+  msu      (movemouse-accel-up    8 700 1 15)
+  msr      (movemouse-accel-right 8 700 1 15)
+  mswd     (mwheel-down 50 120)
+  mswu     (mwheel-up   50 120)
+)

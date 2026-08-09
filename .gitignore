@@ -1,0 +1,12 @@
+# secrets / machine-local
+**/*.local
+**/*secret*
+**/.env
+**/hosts.yml
+**/*.kbd.backup*
+**/.git/
+
+# editor / OS junk
+.DS_Store
+*.swp
+*~
