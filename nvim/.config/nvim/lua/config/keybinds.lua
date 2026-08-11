@@ -9,6 +9,10 @@ end, { desc = "Oil: toggle hidden files" })
 -- jj exits insert mode...
 vim.keymap.set("i", "jj", "<Esc>", { desc = "Exit insert mode" })
 
+-- Exit terminal input mode without closing terminal buffer.
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set("t", "jj", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 -- Leader bindings (mirrors Zed keymap)
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
 
