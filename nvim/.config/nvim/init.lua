@@ -1,5 +1,8 @@
 require("config.options")
 require("config.keybinds")
-require("config.lazy")
 
 vim.cmd.colorscheme("custom")
+
+require("config.statusline")
+require("config.plugins")
+require("config.lsp")
