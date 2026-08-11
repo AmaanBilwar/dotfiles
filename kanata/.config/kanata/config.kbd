@@ -4,6 +4,7 @@
 ;; Right Ctrl toggles mouse layer (press again to exit).
 ;; Hold Tab for nav: i/j/k/l = up/left/down/right; o = `.
 ;; Home-row Alt: hold s or l for Alt; remaining home-row keys stay plain.
+;; Tap = to enable number row; when on, hold - to disable it again.
 
 (defcfg
   process-unmapped-keys yes
@@ -32,7 +33,15 @@
 )
 
 (deflayer main
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   @nums-on
+  @tab-nav q    w    e    r    t    y    u    i    o    p    bspc bspc
+  lctl a      @s-alt d      f      g    h    j      k      @l-alt ;      '    ret
+  z    x    c    v    b    n    m    ,    .    /
+  @la-hold ret esc @mouse-on
+)
+
+(deflayer main-nums
+  1    2    3    4    5    6    7    8    9    0    @nums-off-hold =
   @tab-nav q    w    e    r    t    y    u    i    o    p    bspc bspc
   lctl a      @s-alt d      f      g    h    j      k      @l-alt ;      '    ret
   z    x    c    v    b    n    m    ,    .    /
@@ -40,8 +49,8 @@
 )
 
 (deflayer lower
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  @tab-nav 1    2    3    4    5    6    7    8    9    0    bspc bspc
+  _    _    _    _    _    _    _    _    _    _    _    _
+  @tab-nav S-9  S-0  '    S-'  `    \    /    ;    S-[  S-]  bspc bspc
   lctl S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  \    ret
   S-,  S-.  =    -    S--  S-=  S-[  S-]  [    ]
   _ ret esc esc
@@ -57,8 +66,8 @@
 
 (deflayer mouse
   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX   mltp mmtp mrtp @mswd @mswu @msl @msd @msu @msr XX   XX   XX
+  XX   XX   @msu XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   @msl @msd @msr @mswd XX   XX   @mswu mltp mrtp mmtp XX   XX
   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX   XX   XX   @mouse-off
 )
@@ -68,6 +77,9 @@
   la-hold  (tap-hold-press $tap-time $hold-time lalt (layer-while-held lower))
   mouse-on (layer-switch mouse)
   mouse-off (layer-switch main)
+  nums-on  (layer-switch main-nums)
+  nums-off (layer-switch main)
+  nums-off-hold (tap-hold-press $tap-time $hold-time - @nums-off)
 
   ;; Home-row Alt only: tap emits the letter; hold enables Alt.
   s-alt    (tap-hold $tap-time $hold-time s lalt)
