@@ -165,6 +165,9 @@ export PATH="$PATH:/opt/nvim/"
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
 
+# pi
+export PATH="$HOME/.local/share/pi-node/node-v22.23.2-linux-x64/bin:$PATH"
+
 # Atuin
 [ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
 command -v atuin >/dev/null 2>&1 && eval "$(atuin init zsh)"
@@ -179,6 +182,7 @@ alias lkoff='laptop-kb off'
 alias lkon='laptop-kb on'
 alias lkstatus='laptop-kb status'
 alias agr='agent --resume'
+alias n='nvim .'
 
 autoload -U compinit
 compinit
@@ -193,3 +197,8 @@ function y() {
 	command rm -f -- "$tmp"
 }
 
+
+export PATH="$HOME/.local/go/bin:$PATH"
+
+
+export ZIG_LOCAL_CACHE_DIR="/tmp/zig-cache-${USER:-user}-stream_proxy"

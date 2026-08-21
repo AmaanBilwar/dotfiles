@@ -6,6 +6,11 @@
 **/*.kbd.backup*
 **/.git/
 
+# runtime state / generated checks
+jj/.config/jj/repos/
+jj/.config/jj/workspaces/
+kanata/.config/kanata/kanata-check.*
+
 # editor / OS junk
 .DS_Store
 *.swp

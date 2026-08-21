@@ -13,6 +13,11 @@ vim.keymap.set("i", "jj", "<Esc>", { desc = "Exit insert mode" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set("t", "jj", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
+vim.keymap.set("x", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { silent = true })
+vim.keymap.set("x", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { silent = true })
+vim.keymap.set("x", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { silent = true })
+vim.keymap.set("x", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { silent = true })
+
 -- Leader bindings (mirrors Zed keymap)
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
 

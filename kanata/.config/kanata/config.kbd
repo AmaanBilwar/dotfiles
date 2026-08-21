@@ -1,10 +1,12 @@
 ;; Two-layer keyboard layout.
-;; Hold Left Alt for the lower layer; release to return to main.
-;; Right Alt is Enter. Left Ctrl is Escape.
+;; Hold Left Alt for lower; release to return to main.
+;; Right Alt remains Right Alt. Grave (`) is Escape.
+;; Tested behavior, now disabled: Right Alt was Backspace.
+;; Tested behavior, now disabled: Left Alt switched to lower; Right Alt switched to main.
 ;; Right Ctrl toggles mouse layer (press again to exit).
-;; Hold Tab for nav: i/j/k/l = up/left/down/right; o = `.
-;; Home-row Alt: hold s or l for Alt; remaining home-row keys stay plain.
-;; Tap = to enable number row; when on, hold - to disable it again.
+;; Hold Tab for nav: h/j/k/l = left/down/up/right; o = `.
+;; Lower l/; = []; z/x = <>; Shift+z/x on lower = ,/.
+;; Number row remains active on every layer.
 
 (defcfg
   process-unmapped-keys yes
@@ -25,65 +27,71 @@
 )
 
 (defsrc
-  1    2    3    4    5    6    7    8    9    0    -    =
+  grv  1    2    3    4    5    6    7    8    9    0    -    =
   tab  q    w    e    r    t    y    u    i    o    p    [    bspc
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
   z    x    c    v    b    n    m    ,    .    /
   lalt ralt lctl rctrl
+  lsft rsft
 )
 
 (deflayer main
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   @nums-on
+  esc  1    2    3    4    5    6    7    8    9    0    -    =
   @tab-nav q    w    e    r    t    y    u    i    o    p    bspc bspc
-  lctl a      @s-alt d      f      g    h    j      k      @l-alt ;      '    ret
+  lctl a      s      d      f      g    h    j      k      l      ;    '    ret
   z    x    c    v    b    n    m    ,    .    /
-  @la-hold ret esc @mouse-on
-)
-
-(deflayer main-nums
-  1    2    3    4    5    6    7    8    9    0    @nums-off-hold =
-  @tab-nav q    w    e    r    t    y    u    i    o    p    bspc bspc
-  lctl a      @s-alt d      f      g    h    j      k      @l-alt ;      '    ret
-  z    x    c    v    b    n    m    ,    .    /
-  @la-hold ret esc @mouse-on
+  ;; Tested Backspace behavior: @la-hold bspc esc @mouse-on
+  ;; Tested switch behavior: @lower-on @main-on esc @mouse-on
+  @la-hold ralt esc @mouse-on
+  lsft rsft
 )
 
 (deflayer lower
-  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
   @tab-nav S-9  S-0  '    S-'  `    \    /    ;    S-[  S-]  bspc bspc
-  lctl S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  \    ret
-  S-,  S-.  =    -    S--  S-=  S-[  S-]  [    ]
-  _ ret esc esc
+  lctl S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  [    ]    \    ret
+  @lt-sh  @gt-sh  =    -    S--  S-=  _    _    _    _
+  ;; Tested Backspace behavior: _ bspc esc esc
+  ;; Tested switch behavior: @lower-on @main-on esc esc
+  _ ralt esc esc
+  lsft rsft
 )
 
 (deflayer nav
-  _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    _    up   `    _    _    _
-  _    _    _    _    _    _    _    left down rght del  _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    `    _    _    _
+  _    _    _    _    _    _    left down up   rght del  _    _
   _    _    _    _    _    _    _    _    _    _
   _    _    _    _
+  _    _
 )
 
 (deflayer mouse
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   _    _    _    _    _    _    _    _    _    _    _    _
   XX   XX   @msu XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX   @msl @msd @msr @mswd XX   XX   @mswu mltp mrtp mmtp XX   XX
   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX   XX   XX   @mouse-off
+  ;; Tested Backspace behavior: XX bspc XX @mouse-off
+  ;; Tested switch behavior: @lower-on @main-on XX @mouse-off
+  XX XX XX @mouse-off
+  XX   XX
 )
 
 (defalias
   tab-nav  (tap-hold-press $tap-time $hold-time tab (layer-while-held nav))
   la-hold  (tap-hold-press $tap-time $hold-time lalt (layer-while-held lower))
+  ;; Tested switch behavior:
+  ;; lower-on (layer-switch lower)
+  ;; main-on  (layer-switch main)
   mouse-on (layer-switch mouse)
   mouse-off (layer-switch main)
-  nums-on  (layer-switch main-nums)
-  nums-off (layer-switch main)
-  nums-off-hold (tap-hold-press $tap-time $hold-time - @nums-off)
 
-  ;; Home-row Alt only: tap emits the letter; hold enables Alt.
-  s-alt    (tap-hold $tap-time $hold-time s lalt)
-  l-alt    (tap-hold $tap-time $hold-time l ralt)
+
+  ;; Lower z/x: <> normally; Shift held → ,/.
+  lt-plain (unmod ,)
+  gt-plain (unmod .)
+  lt-sh    (fork S-, @lt-plain (lsft rsft))
+  gt-sh    (fork S-. @gt-plain (lsft rsft))
 
   msl      (movemouse-accel-left  8 700 1 15)
   msd      (movemouse-accel-down  8 700 1 15)

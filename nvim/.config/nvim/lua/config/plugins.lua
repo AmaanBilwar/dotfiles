@@ -6,9 +6,14 @@ packadd("fff.nvim")
 packadd("oil.nvim")
 packadd("mini.nvim")
 packadd("nvim-treesitter")
+packadd("vim-tmux-navigator")
 
 require("oil").setup({
   default_file_explorer = true,
+  keymaps = {
+    ["<C-h>"] = false,
+    ["<C-l>"] = false,
+  },
 })
 
 require("mini.surround").setup()
