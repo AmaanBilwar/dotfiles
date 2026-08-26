@@ -202,3 +202,6 @@ export PATH="$HOME/.local/go/bin:$PATH"
 
 
 export ZIG_LOCAL_CACHE_DIR="/tmp/zig-cache-${USER:-user}-stream_proxy"
+
+# bun completions
+[ -s "/home/amaan/.bun/_bun" ] && source "/home/amaan/.bun/_bun"
