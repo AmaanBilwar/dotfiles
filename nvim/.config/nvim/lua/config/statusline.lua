@@ -9,24 +9,55 @@ local mode_names = {
   t = "TERMINAL",
 }
 
-local function statusline()
+local function mode_name()
   local mode = vim.api.nvim_get_mode().mode
   local key = mode:sub(1, 1)
-  local group = key == "i" and "StatusLineInsert" or "StatusLineNormal"
-  local label = mode_names[key] or mode:upper()
-
-  return string.format("%%#%s# %s %%#StatusLine# %%f ", group, label)
+  return mode_names[key] or mode:upper()
 end
 
-_G.nvim_statusline = statusline
+local function current_directory()
+  return vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
+end
 
-vim.api.nvim_set_hl(0, "StatusLineNormal", { fg = "#FFFEDB", bg = "#34383C", bold = true })
-vim.api.nvim_set_hl(0, "StatusLineInsert", { fg = "#202020", bg = "#00FF00", bold = true })
-vim.o.statusline = "%!v:lua.nvim_statusline()"
+vim.opt.laststatus = 0
 
-vim.api.nvim_create_autocmd("ModeChanged", {
-  group = vim.api.nvim_create_augroup("statusline_mode", { clear = true }),
-  callback = function()
-    vim.cmd.redrawstatus()
-  end,
+require("lualine").setup({
+  options = {
+    section_separators = "",
+    component_separators = "",
+  },
+  sections = {},
+  inactive_sections = {},
+  winbar = {
+    lualine_a = { mode_name },
+    lualine_b = {
+      {
+        "filename",
+        path = 1,
+        cond = function()
+          return vim.bo.filetype ~= "oil"
+        end,
+      },
+    },
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { current_directory },
+  },
+  inactive_winbar = {
+    lualine_a = { mode_name },
+    lualine_b = {
+      {
+        "filename",
+        path = 1,
+        cond = function()
+          return vim.bo.filetype ~= "oil"
+        end,
+      },
+    },
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { current_directory },
+  },
 })

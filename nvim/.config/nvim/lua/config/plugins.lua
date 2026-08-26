@@ -6,6 +6,7 @@ packadd("fff.nvim")
 packadd("oil.nvim")
 packadd("mini.nvim")
 packadd("nvim-treesitter")
+packadd("lualine.nvim")
 packadd("vim-tmux-navigator")
 
 require("oil").setup({

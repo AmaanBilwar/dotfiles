@@ -1,8 +1,6 @@
 require("config.options")
 require("config.keybinds")
-
-vim.cmd.colorscheme("custom")
-
-require("config.statusline")
+vim.cmd.colorscheme("gruvbox")
 require("config.plugins")
+require("config.statusline")
 require("config.lsp")
