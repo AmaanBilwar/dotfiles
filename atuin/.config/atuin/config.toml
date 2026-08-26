@@ -336,6 +336,7 @@ autostart = true
 
 [ai]
 enabled = true
+model = "fast"
 ## Columns to display in the interactive search, from left to right.
 ## The selection indicator (" > ") is always shown first implicitly.
 ##
