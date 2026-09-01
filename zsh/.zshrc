@@ -170,6 +170,8 @@ export PATH="$HOME/.local/share/pi-node/node-v22.23.2-linux-x64/bin:$PATH"
 
 # Atuin
 [ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
+# Keep the client and daemon on the same Atuin release.
+export PATH="$HOME/.atuin/bin:$PATH"
 command -v atuin >/dev/null 2>&1 && eval "$(atuin init zsh)"
 
 alias lg='lazygit'
@@ -183,6 +185,7 @@ alias lkon='laptop-kb on'
 alias lkstatus='laptop-kb status'
 alias agr='agent --resume'
 alias n='nvim .'
+alias oc='opencode2'
 
 autoload -U compinit
 compinit
@@ -205,3 +208,14 @@ export ZIG_LOCAL_CACHE_DIR="/tmp/zig-cache-${USER:-user}-stream_proxy"
 
 # bun completions
 [ -s "/home/amaan/.bun/_bun" ] && source "/home/amaan/.bun/_bun"
+
+sops-init() {
+  local recipient
+  recipient=$(age-keygen -y ~/.config/sops/age/keys.txt)
+  cat > .sops.yaml <<EOF
+creation_rules:
+  - path_regex: \\.env(\\..*)?$
+    age: $recipient
+EOF
+  echo ".sops.yaml created"
+}

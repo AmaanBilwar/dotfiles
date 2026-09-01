@@ -10,6 +10,7 @@
 jj/.config/jj/repos/
 jj/.config/jj/workspaces/
 kanata/.config/kanata/kanata-check.*
+kanata/.config/kanata/kanata.pid
 
 # editor / OS junk
 .DS_Store

@@ -1,16 +1,23 @@
 # Starts Kanata with this stowed configuration.
 $ErrorActionPreference = 'Stop'
 
-# Strip PowerShell provider prefix before passing path to kanata.exe.
+# Strip a PowerShell provider prefix before passing the path to kanata.exe.
 # Kanata accepts native paths such as \\wsl.localhost\Ubuntu-24.04\..., not
 # `Microsoft.PowerShell.Core\\FileSystem::...` paths.
 $configPsPath = Join-Path $PSScriptRoot 'config.kbd'
 $config = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($configPsPath)
+if ($config -match '^[^:]+::') {
+    $config = $config.Substring($config.IndexOf('::') + 2)
+}
 $pidFile = Join-Path $PSScriptRoot 'kanata.pid'
 
 # Prefer WSL/dotfiles copy when reachable so Windows ~/.config does not drift.
-$dotfilesConfig = '\\wsl$\Ubuntu-24.04\home\amaan\projects\dotfiles\kanata\.config\kanata\config.kbd'
-if (Test-Path -LiteralPath $dotfilesConfig) {
+$dotfilesConfigs = @(
+    '\\wsl.localhost\Ubuntu-24.04\home\amaan\projects\dotfiles\kanata\.config\kanata\config.kbd'
+    '\\wsl$\Ubuntu-24.04\home\amaan\projects\dotfiles\kanata\.config\kanata\config.kbd'
+)
+$dotfilesConfig = $dotfilesConfigs | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
+if ($dotfilesConfig) {
     # Previous behavior copied unconditionally, which can corrupt the file when
     # source and destination resolve to the same WSL file.
     # Copy-Item -LiteralPath $dotfilesConfig -Destination $config -Force
@@ -29,9 +36,14 @@ if (-not (Test-Path -LiteralPath $config)) {
 }
 
 if (Test-Path -LiteralPath $pidFile) {
-    $existingPid = Get-Content -LiteralPath $pidFile -Raw
-    $existing = Get-Process -Id $existingPid.Trim() -ErrorAction SilentlyContinue
-    if ($existing) {
+    $existingPidText = (Get-Content -LiteralPath $pidFile -Raw).Trim()
+    $existingPid = 0
+    $validPid = [int]::TryParse($existingPidText, [ref]$existingPid)
+    $existing = if ($validPid -and $existingPid -gt 0) {
+        Get-Process -Id $existingPid -ErrorAction SilentlyContinue
+    }
+
+    if ($existing -and $existing.ProcessName -ieq 'kanata') {
         Write-Host "Kanata is already running (PID $($existing.Id))."
         return
     }

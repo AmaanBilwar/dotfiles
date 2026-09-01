@@ -35,7 +35,7 @@ require("lualine").setup({
         "filename",
         path = 1,
         cond = function()
-          return vim.bo.filetype ~= "oil"
+          return vim.bo.filetype ~= "neo-tree"
         end,
       },
     },
@@ -51,7 +51,7 @@ require("lualine").setup({
         "filename",
         path = 1,
         cond = function()
-          return vim.bo.filetype ~= "oil"
+          return vim.bo.filetype ~= "neo-tree"
         end,
       },
     },

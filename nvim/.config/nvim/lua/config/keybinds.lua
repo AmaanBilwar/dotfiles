@@ -1,10 +1,20 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "Open Oil" })
-vim.keymap.set("n", "<leader>cd", "<cmd>Oil<cr>", { desc = "Open Oil" })
-vim.keymap.set("n", "<S-h>", function()
-	require("oil").toggle_hidden()
-end, { desc = "Oil: toggle hidden files" })
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree filesystem toggle<cr>", { desc = "Toggle file tree" })
+vim.keymap.set("n", "<leader>cd", "<cmd>Neotree filesystem toggle<cr>", { desc = "Toggle file tree" })
+
+vim.keymap.set("n", "<leader>a", function()
+	require("harpoon"):list():add()
+end, { desc = "Harpoon add file" })
+vim.keymap.set("n", "<leader>h", function()
+	local harpoon = require("harpoon")
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "Harpoon menu" })
+for index = 1, 4 do
+	vim.keymap.set("n", "<leader>" .. index, function()
+		require("harpoon"):list():select(index)
+	end, { desc = "Harpoon select file " .. index })
+end
 
 -- jj exits insert mode...
 vim.keymap.set("i", "jj", "<Esc>", { desc = "Exit insert mode" })

@@ -3,30 +3,31 @@ local function packadd(package)
 end
 
 packadd("fff.nvim")
-packadd("oil.nvim")
+packadd("plenary.nvim")
+packadd("nui.nvim")
+packadd("neo-tree.nvim")
+packadd("harpoon")
 packadd("mini.nvim")
 packadd("nvim-treesitter")
+packadd("smear-cursor.nvim")
 packadd("lualine.nvim")
 packadd("vim-tmux-navigator")
 
-require("oil").setup({
-  default_file_explorer = true,
-  keymaps = {
-    ["<C-h>"] = false,
-    ["<C-l>"] = false,
-  },
-})
+require("neo-tree").setup({})
+
+require("harpoon"):setup()
 
 require("mini.surround").setup()
+require("smear_cursor").setup()
 
 vim.api.nvim_create_autocmd("VimEnter", {
-  group = vim.api.nvim_create_augroup("open_oil_on_empty_start", { clear = true }),
+  group = vim.api.nvim_create_augroup("open_neo_tree_on_empty_start", { clear = true }),
   callback = function()
     if #vim.api.nvim_list_uis() == 0 or vim.fn.argc() ~= 0 or vim.api.nvim_buf_get_name(0) ~= "" then
       return
     end
 
-    vim.cmd.Oil()
+    vim.cmd.Neotree()
   end,
 })
 

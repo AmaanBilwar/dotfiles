@@ -42,6 +42,12 @@
     },
   },
   {
+    "context": "Terminal",
+    "bindings": {
+      "space f": "file_finder::Toggle",
+    },
+  },
+  {
     "context": "Editor && vim_mode == insert",
     "bindings": {
       "j j": "vim::NormalBefore",
