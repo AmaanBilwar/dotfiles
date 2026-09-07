@@ -1,0 +1,19 @@
+{ ... }:
+
+{
+  home.file.".config/herdr/config.toml".text = ''
+    onboarding = false
+
+    [theme]
+    name = "terminal"
+
+    [keys]
+    prefix = "ctrl+f"
+
+    [experimental]
+    kitty_graphics = true
+
+    [ui]
+    agent_panel_sort = "priority"
+  '';
+}

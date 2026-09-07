@@ -1,18 +1,4 @@
-# secrets / machine-local
-**/*.local
-**/*secret*
-**/.env
-**/hosts.yml
-**/*.kbd.backup*
-**/.git/
-
-# runtime state / generated checks
-jj/.config/jj/repos/
-jj/.config/jj/workspaces/
-kanata/.config/kanata/kanata-check.*
-kanata/.config/kanata/kanata.pid
-
-# editor / OS junk
-.DS_Store
-*.swp
-*~
+result
+result-*
+.direnv/
+*.hm-backup

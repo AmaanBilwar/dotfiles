@@ -1,6 +1,0 @@
-require("config.options")
-require("config.keybinds")
-vim.cmd.colorscheme("default")
-require("config.plugins")
-require("config.statusline")
-require("config.lsp")
