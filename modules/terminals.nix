@@ -173,7 +173,6 @@
     if wezterm.config_builder then
       config = wezterm.config_builder()
     end
-    config.default_prog = {'tmux'}
     config.initial_cols = 120
     config.initial_rows = 40
     config.font = wezterm.font('Iosevka Term', { weight = 'Regular' })
