@@ -108,6 +108,7 @@
   '';
 
   home.file.".tmux.conf".text = ''
+    set -g prefix C-a
     unbind C-b
     bind-key C-a send-prefix
     set -g escape-time 0
