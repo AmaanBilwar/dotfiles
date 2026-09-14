@@ -41,6 +41,54 @@ let
     splitString
     ;
 
+  openNormalLinksScript = ''
+// ==UserScript==
+// @name         Open navigation links in new tabs
+// @match        *://*/*
+// @run-at       document-start
+// ==/UserScript==
+
+document.addEventListener('click', (event) => {
+  // Only ordinary left-clicks. Keep browser shortcuts working normally.
+  if (
+    event.button !== 0 ||
+    event.ctrlKey ||
+    event.metaKey ||
+    event.shiftKey ||
+    event.altKey ||
+    event.defaultPrevented
+  ) return;
+
+  const link = event.target.closest('a[href]');
+  if (!link) return;
+
+  // Do not interfere with dropdowns, dialogs, tabs, or other in-page controls.
+  const interactiveUI = link.closest(`
+    [role="menu"],
+    [role="menuitem"],
+    [role="listbox"],
+    [role="option"],
+    [role="dialog"],
+    [role="tablist"],
+    [role="tab"],
+    [role="button"],
+    button,
+    select,
+    option,
+    [aria-haspopup],
+    [aria-expanded]
+  `);
+
+  if (interactiveUI) return;
+
+  const url = new URL(link.href, location.href);
+  if (!['http:', 'https:'].includes(url.protocol)) return;
+
+  event.preventDefault();
+  window.open(url.href, '_blank', 'noopener');
+}, false);
+  '';
+
   # UNSLOP
   extensions.consent-o-matic.id = "mdjildafknihdffpkfmmpnpoiajfjnjd";
   extensions.ublock-origin =
