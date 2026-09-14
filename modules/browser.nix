@@ -379,6 +379,8 @@ in
         ];
 
       packages = singleton inputs.helium.packages.${osConfig.nixpkgs.hostPlatform.system}.default;
+
+      home.file."open-normal-links.user.js".text = openNormalLinksScript;
     };
 }
 
