@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   home.file.".zshrc".text = ''
@@ -6,6 +6,7 @@
     ZSH_THEME="robbyrussell"
     plugins=(git)
     source $ZSH/oh-my-zsh.sh
+    source ${pkgs.zsh-autosuggestions}/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     PROMPT="%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[cyan]%}%c%{$reset_color%} "
 
     typeset -U path PATH
@@ -50,8 +51,8 @@
     alias lg='lazygit'
     alias cls='clear'
     alias nrd='npm run dev'
-    alias pi='caveman pi'
-    alias oc='caveman run -- opencode2'
+    alias pi='pi'
+    alias oc='opencode2'
     alias p='pnpm'
     alias ock='opencode -s ses_0ea95d687ffeXREnepJL2F86vR'
     alias lkoff='laptop-kb off'
@@ -60,6 +61,8 @@
     alias agr='agent --resume'
     alias n='nvim .'
     alias t='tmux'
+    alias piq='ollama launch pi --model qwen3.5:latest'
+    alias brd='bun run dev'
 
     autoload -U compinit
     compinit
