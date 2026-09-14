@@ -187,6 +187,8 @@ document.addEventListener('click', (event) => {
       ];
     };
 
+  # TWITCH
+  extensions.7tv.id = "ammjkodgmmoknidbanneddgankgfejfh"
   # YOUTUBE
   extensions.dearrow.id = "enamippconapkdmgfgjchkhakpfinmaj";
   extensions.sponsorblock.id = "mnjggcdmjocbbbhaepdhchncahnbgone";
