@@ -197,6 +197,10 @@ document.addEventListener('click', (event) => {
   extensions.dark-reader.id = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
   extensions.refined-github.id = "hlepfoohegkhhmjieoechaddaejaokhf";
 
+  extensions.ahamusic = {
+	id = "dpacanjfikmhoddligfbehkpomnbgblf";
+}
+
   extensions.vimium-c.id = "hfjbmagddngcpeloejdejnfgbamkjaeg";
 
   extensions.bitwarden.id = "nngceckbapebfimnlniiiahkandclblb";
