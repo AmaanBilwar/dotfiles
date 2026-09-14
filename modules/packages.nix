@@ -9,6 +9,7 @@
     pkgs.tmux
     pkgs.wezterm
     pkgs.zoxide
+    pkgs.zsh-autosuggestions
     pkgs.yazi
 
     # Editors and development tools.
@@ -21,15 +22,6 @@
     pkgs.lazygit
     pkgs.age
     pkgs.sops
-
-    # Caveman installer. Run `caveman-install` once after switching.
-    (pkgs.writeShellApplication {
-      name = "caveman-install";
-      runtimeInputs = [ pkgs.bash pkgs.curl pkgs.nodejs_22 ];
-      text = ''
-        exec curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/v2.6.0/install.sh | bash
-      '';
-    })
 
     # Desktop and hardware configuration tools.
     pkgs.zed-editor
