@@ -190,6 +190,7 @@ document.addEventListener('click', (event) => {
   # TWITCH
   extensions.7tv.id = "ammjkodgmmoknidbanneddgankgfejfh"
   # YOUTUBE
+  # licenseKey via sops template (modules/sops.nix) — not in git plaintext
   extensions.dearrow.id = "enamippconapkdmgfgjchkhakpfinmaj";
   extensions.sponsorblock.id = "mnjggcdmjocbbbhaepdhchncahnbgone";
 
