@@ -40,6 +40,7 @@
     vim.keymap.set("x", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { silent = true })
     vim.keymap.set("x", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { silent = true })
     vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
+    vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
     vim.keymap.set("n", "<leader>r", "<cmd>e!<cr>", { desc = "Reload file" })
     vim.keymap.set("n", "<leader>ff", function() require("fff").find_files() end, { desc = "FFF find files" })
     vim.keymap.set("n", "<leader>fg", function() require("fff").live_grep() end, { desc = "FFF live grep" })
