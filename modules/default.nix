@@ -8,6 +8,7 @@
 	  ./kanata.nix
 	  ./packages.nix
 	  ./shell.nix
+	  ./sops.nix
 	  ./terminals.nix
 	  ./version-control.nix
   ];
