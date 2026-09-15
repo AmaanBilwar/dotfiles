@@ -177,7 +177,7 @@
     config.initial_cols = 120
     config.initial_rows = 40
     config.font = wezterm.font('Iosevka Term', { weight = 'Regular' })
-    config.font_size = 16
+    config.font_size = 10 
     config.freetype_load_target = 'Normal'
     config.color_scheme = 'Gruvbox'
     config.color_schemes = {
