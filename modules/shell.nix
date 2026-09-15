@@ -78,6 +78,8 @@
       recipient=$(age-keygen -y ~/.config/sops/age/keys.txt)
       cat > .sops.yaml <<EOF
     creation_rules:
+      - path_regex: secrets/.*\.(yaml|yml|json|env)$
+        age: $recipient
       - path_regex: \.env(\..*)?$
         age: $recipient
     EOF
