@@ -2,3 +2,5 @@ result
 result-*
 .direnv/
 *.hm-backup
+config.bat
+node_modules
