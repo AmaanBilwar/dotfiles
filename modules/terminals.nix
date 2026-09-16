@@ -163,9 +163,10 @@
     set -g window-status-current-style "bg=#303030,fg=#eeeeee,bold"
     set -g status-right "#[bg=#b2b2b2,fg=#1c1c1c,bold] #{b:pane_current_path} "
     set -g pane-border-lines single
-    set -g pane-border-status off
+    set -g pane-border-status top
+    set -g pane-border-format " "
     set -g pane-border-style fg=#665c54
-    set -g pane-active-border-style fg=#a89984
+    set -g pane-active-border-style "fg=#fe8019,bold"
   '';
 
   home.file.".wezterm.lua".text = ''
