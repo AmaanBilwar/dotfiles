@@ -42,7 +42,6 @@
       *) export PATH="$PNPM_HOME/bin:$PATH" ;;
     esac
     export PATH="$PATH:/opt/nvim/"
-    export PATH="$HOME/.opencode/bin:$PATH"
     export PATH="$HOME/.local/share/pi-node/node-v22.23.2-linux-x64/bin:$PATH"
     [ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
     export PATH="$HOME/.atuin/bin:$PATH"
@@ -51,7 +50,6 @@
     alias lg='lazygit'
     alias cls='clear'
     alias nrd='npm run dev'
-    alias oc='opencode2'
     alias p='pnpm'
     alias t='tmux'
     alias piq='ollama launch pi --model qwen3.5:latest'
@@ -68,7 +66,7 @@
       [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
       command rm -f -- "$tmp"
     }
-
+    export PATH=/home/amaan/.opencode/bin:$PATH
     export PATH="$HOME/.local/go/bin:$PATH"
     export ZIG_LOCAL_CACHE_DIR="/tmp/zig-cache-''${USER:-user}-stream_proxy"
     [ -s "/home/amaan/.bun/_bun" ] && source "/home/amaan/.bun/_bun"
