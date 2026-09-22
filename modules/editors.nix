@@ -50,6 +50,8 @@
     vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
     vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
     vim.keymap.set("n", "<leader>r", "<cmd>e!<cr>", { desc = "Reload file" })
+    vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+    vim.keymap.set("i", "<C-Space>", vim.lsp.completion.get, { desc = "Trigger LSP completion" })
     vim.keymap.set("n", "<leader>ff", function() require("fff").find_files() end, { desc = "FFF find files" })
     vim.keymap.set("n", "<leader>fg", function() require("fff").live_grep() end, { desc = "FFF live grep" })
     vim.keymap.set("n", "<leader>fr", function() require("fff").resume() end, { desc = "FFF resume last picker" })
