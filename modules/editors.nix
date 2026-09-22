@@ -17,7 +17,9 @@
     vim.opt.smartcase = true
     vim.opt.ignorecase = true
     vim.opt.fillchars = { eob = " " }
-    vim.cmd.colorscheme("gruvbox")
+    vim.cmd.packadd("onedark.nvim")
+    require("onedark").setup({ style = "dark", transparent = false, term_colors = true })
+    require("onedark").load()
 
     vim.g.mapleader = " "
     vim.keymap.set("n", "<leader>e", "<cmd>Neotree filesystem toggle<cr>", { desc = "Toggle file tree" })
