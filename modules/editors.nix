@@ -11,7 +11,7 @@
     vim.opt.showbreak = ">> "
     vim.opt.clipboard = "unnamedplus"
     vim.opt.termguicolors = true
-    vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor"
+    vim.opt.completeopt = { "menu", "menuone", "noselect" }
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
     vim.opt.smartcase = true
