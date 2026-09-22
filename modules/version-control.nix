@@ -15,6 +15,11 @@
     	defaultBranch = main
     [core]
     	editor = nvim
+    [filter "lfs"]
+    	clean = git-lfs clean -- %f
+    	smudge = git-lfs smudge -- %f
+    	process = git-lfs filter-process
+    	required = true
   '';
 
   home.file.".config/gh/config.yml".text = ''
