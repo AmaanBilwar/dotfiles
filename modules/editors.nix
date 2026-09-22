@@ -22,6 +22,12 @@
     require("onedark").load()
 
     vim.g.mapleader = " "
+    vim.keymap.set("n", "<leader>gg", function()
+      vim.pack.add({
+        { src = "https://github.com/kdheepak/lazygit.nvim" },
+      }, { load = true })
+      vim.cmd.LazyGit()
+    end, { desc = "Open LazyGit" })
     vim.keymap.set("n", "<leader>e", "<cmd>Neotree filesystem toggle<cr>", { desc = "Toggle file tree" })
     vim.keymap.set("n", "<leader>cd", "<cmd>Neotree filesystem toggle<cr>", { desc = "Toggle file tree" })
     vim.keymap.set("n", "<leader>a", function() require("harpoon"):list():add() end, { desc = "Harpoon add file" })
