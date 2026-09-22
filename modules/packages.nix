@@ -19,6 +19,7 @@
 
     # Version control and utilities.
     pkgs.gh
+    pkgs.git-lfs
     pkgs.lazygit
     pkgs.age
     pkgs.sops
