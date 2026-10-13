@@ -16,6 +16,12 @@
     focus_pane_up = "ctrl+k"
     focus_pane_right = "ctrl+l"
 
+    [keys.indexed]
+    workspaces = "ctrl"
+
+    [worktrees]
+    directory = "/home/amaan/projects/worktrees"
+
     [experimental]
     kitty_graphics = true
 

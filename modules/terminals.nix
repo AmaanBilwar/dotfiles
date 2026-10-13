@@ -109,6 +109,7 @@
 
   home.file.".tmux.conf".text = ''
     set -g prefix C-a
+    set -g extended-keys-format csi-u
     unbind C-b
     bind-key C-a send-prefix
     set -g escape-time 0
@@ -137,8 +138,23 @@
     setw -g mode-keys vi
     set -g status-keys vi
     set -g mouse on
+    set -g set-clipboard on
     bind-key -T copy-mode-vi v send-keys -X begin-selection
     bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "win32yank.exe -i --crlf"
+    set -g status-position top
+    # One Dark theme
+    set -g status-style "bg=#282c34,fg=#abb2bf"
+    set -g status-left " #[fg=#61afef,bold]#S #[default]"
+    set -g status-left-length 30
+    set -g status-right "#[fg=#56b6c2]%Y-%m-%d #[fg=#98c379]%H:%M "
+    set -g status-right-length 40
+    setw -g window-status-format " #[fg=#abb2bf]#I:#W "
+    setw -g window-status-current-format "#[bg=#3e4451,fg=#61afef,bold] #I:#W "
+    setw -g window-status-current-style "bg=#3e4451"
+    setw -g window-status-separator ""
+    set -g pane-border-style "fg=#3e4451"
+    set -g pane-active-border-style "fg=#61afef"
+    set -g message-style "bg=#3e4451,fg=#e5c07b"
     set -g base-index 1
     set -g pane-base-index 1
     set -g renumber-windows on
@@ -150,23 +166,6 @@
     set -g default-terminal "''${TERM}"
     set -sg terminal-overrides ",*:RGB"
     set -g focus-events on
-    set -g status-position top
-    set -g status-style "bg=#1c1c1c,fg=#a8a8a8"
-    set -g status-justify left
-    set -g status-left-length 0
-    set -g status-right-length 40
-    set -g status-left ""
-    set -g window-status-separator " "
-    set -g window-status-format " #I:#W#F "
-    set -g window-status-current-format " #I:#W#F "
-    set -g window-status-style "bg=#1c1c1c,fg=#a8a8a8"
-    set -g window-status-current-style "bg=#303030,fg=#eeeeee,bold"
-    set -g status-right "#[bg=#b2b2b2,fg=#1c1c1c,bold] #{b:pane_current_path} "
-    set -g pane-border-lines single
-    set -g pane-border-status top
-    set -g pane-border-format " "
-    set -g pane-border-style fg=#665c54
-    set -g pane-active-border-style "fg=#fe8019,bold"
   '';
 
   home.file.".wezterm.lua".text = ''

@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  home.sessionPath = [ "/snap/bin" ];
+
   home.file.".zshrc".text = ''
     export ZSH="$HOME/.oh-my-zsh"
     ZSH_THEME="robbyrussell"
@@ -31,6 +33,11 @@
     alias l='ls -CF'
     [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
     export PATH="$HOME/.local/bin:$PATH"
+    # Ubuntu snap apps (typst, etc.) live here; zsh doesn't source /etc/profile.d.
+    case ":$PATH:" in
+      *":/snap/bin:"*) ;;
+      *) export PATH="$PATH:/snap/bin" ;;
+    esac
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
     command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
@@ -54,6 +61,8 @@
     alias t='tmux'
     alias piq='ollama launch pi --model qwen3.5:latest'
     alias brd='bun run dev'
+    alias oc='opencode'
+    alias pa='prime-agent'
 
     autoload -U compinit
     compinit

@@ -15,6 +15,7 @@
     # Editors and development tools.
     pkgs.neovim
     pkgs.rust-analyzer
+    pkgs.typst
     pkgs.typescript-language-server
 
     # Version control and utilities.
